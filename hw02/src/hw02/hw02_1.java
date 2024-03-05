@@ -1,7 +1,6 @@
 package hw02;
-import java.time.Year;
 import java.util.Scanner;
-public class hw02 {
+public class hw02_1 {
 	static Scanner sc =new Scanner(System.in);
 	public static void main(String[] args) {
 		if(ask("是否發燒(y/n)").equals("y")) {
