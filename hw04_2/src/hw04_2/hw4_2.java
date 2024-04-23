@@ -17,7 +17,6 @@ public class hw4_2 {
 				System.out.println(matcher.group());
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

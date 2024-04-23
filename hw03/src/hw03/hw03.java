@@ -1,7 +1,5 @@
 package hw03;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 public class hw03 {
 	public static void main(String[] args) {
@@ -19,6 +17,7 @@ public class hw03 {
 		    	System.out.printf("arr[%d]:%d\n",idx,arr[idx]);
 		    	idx--;
 		    }
+			sc.close();
 		  }	
 }
 

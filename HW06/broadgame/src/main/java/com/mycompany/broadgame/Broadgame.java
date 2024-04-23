@@ -45,6 +45,7 @@ public class Broadgame {
             }
             if(end(board)){
                 isGameEnd = true;
+                sc.close();
             }
             
         }

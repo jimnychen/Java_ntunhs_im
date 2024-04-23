@@ -19,7 +19,7 @@ public class Hw04 {
 			text=text.replace("你能","我能");
 			text=text.replace("你會", "我會");
 			System.out.println("我說:"+text);
-			
+			sc.close();
 			
 		}
 		
