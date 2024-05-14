@@ -6,7 +6,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         JButton bouttonarray[]= new JButton[9];
         TicTacToeGame game = new TicTacToeGame();
-        JLabel turn = new JLabel("now is x turn",SwingConstants.CENTER);
+        JLabel turn = new JLabel("now is "+game.getCurrentPlayer()+" turn",SwingConstants.CENTER);
         JFrame window =new JFrame();
         window.setSize(300,300);
         window.setLayout(new BorderLayout(1,1));
@@ -16,7 +16,31 @@ public class App {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() instanceof JButton) {
                     JButton clickeButton = (JButton) e.getSource();
-                    clickeButton.setText(String.valueOf("x")); 
+                    clickeButton.setText(String.valueOf(game.getCurrentPlayer()));
+                    
+                    int index =-1;
+                    for(Integer i=0;i<bouttonarray.length;i++){
+                        if(clickeButton.equals(bouttonarray[i])){
+                            index = i;
+                            continue;
+                        }
+                    }
+                    Integer row = index/3;
+                    Integer col =index%3;
+                    game.makeMove(row, col);
+                    game.printBoard(game.getGameBoard());
+                    if (game.hasWinner()) {
+                        turn.setText("Player " + game.getCurrentPlayer() + " wins!");
+                        System.out.println("Player " + game.getCurrentPlayer() + " wins!");
+                    } else if (game.isBoardFull()) {
+                        turn.setText("It's a tie!");
+                        System.out.println("It's a tie!");
+                    } else {
+                        turn.setText("now is "+game.getCurrentPlayer()+" turn");
+                        game.switchPlayer();
+                        
+                    }
+                    
                 }
             }
         };
