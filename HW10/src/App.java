@@ -9,6 +9,7 @@ public class App {
             switch(in){
                 case "0":
                 in="0";
+                student.writeToCsv("./student.csv");
                 break;
                 case "1":
                 System.out.println("請輸入學生姓名");

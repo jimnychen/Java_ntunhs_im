@@ -1,9 +1,29 @@
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class student {
-     private Map<String,Integer> student =new HashMap<String,Integer>();
+    File StudentData = new File("./student.csv");
+    student(){
+        if(!StudentData.exists()) {
+            try {
+                StudentData.createNewFile();
+            } catch (IOException e) {
+                System.err.println(e);
+            }
+            
+        }else{
+            loadFromCsv("student.csv");
+        }
+    }
+    private Map<String,Integer> student =new HashMap<String,Integer>();
     public Scanner sc =new Scanner(System.in);
      void add(String StudentName,Integer Grade){
         student.put(StudentName,Grade);
@@ -46,6 +66,33 @@ public class student {
      void showAll(){
       this.student.forEach((key,value)-> System.out.println(key+":"+value));  
       return;
+     }
+     void writeToCsv(String file){
+        try {
+           BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            for (Map.Entry<String,Integer> entry:student.entrySet()){
+                writer.write(entry.getKey()+","+entry.getValue());
+                writer.newLine();
+            }
+            writer.close();
+        } catch (Exception e) {
+                    System.err.println(e);
+        }
+        
+     }
+     void loadFromCsv(String file){
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line;
+            while((line = reader.readLine())!=null){
+                String studentName= line.split(",")[0];
+                int grade = Integer.parseInt(line.split(",")[1]);
+                student.put(studentName, grade);
+            }
+            reader.close();
+        } catch (Exception e) {
+                    System.err.println(e);
+        }
      }
     }
 
